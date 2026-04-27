@@ -41,7 +41,7 @@
 
 <body>
 
-  <h2>UI Performance Benchmark (Numeric Output)</h2>
+  <h2>UI Performance Benchmark</h2>
 
   <button id="run">Run Test</button>
   <button id="reset">Reset</button>
@@ -78,7 +78,7 @@
           const time = end - start;
 
           log.textContent =
-            "UI Performance Result:\n" +
+            "UI Performance Results:\n" +
             time.toFixed(2) + " milliseconds total render time\n" +
             (10000 / time).toFixed(2) + " relative operations per 10000 milliseconds";
         });
