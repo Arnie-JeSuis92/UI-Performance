@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UI Performance (Numeric)</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    button {
+      margin-right: 10px;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    #log {
+      margin-top: 20px;
+      font-family: monospace;
+      font-size: 16px;
+      white-space: pre;
+    }
+
+    /* Hidden container used for workload */
+    #hidden {
+      position: absolute;
+      left: -99999px;
+      top: -99999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .box {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>UI Performance Benchmark (Numeric Output)</h2>
+
+  <button id="run">Run Test</button>
+  <button id="reset">Reset</button>
+
+  <div id="log">Click "Run Test"</div>
+
+  <div id="hidden"></div>
+
+  <script>
+    const hidden = document.getElementById("hidden");
+    const log = document.getElementById("log");
+
+    function runTest() {
+      hidden.innerHTML = "";
+
+      const start = performance.now();
+
+      // UI workload (DOM creation + style + layout cost)
+      for (let i = 0; i < 5000; i++) {
+        const div = document.createElement("div");
+        div.className = "box";
+
+        // Forces style computation cost
+        div.style.background = `hsl(${Math.random() * 360}, 80%, 60%)`;
+
+        hidden.appendChild(div);
+      }
+
+      // Ensure browser actually paints/layouts
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const end = performance.now();
+
+          const time = end - start;
+
+          log.textContent =
+            "UI Performance Result:\n" +
+            time.toFixed(2) + " ms total render time\n" +
+            (10000 / time).toFixed(2) + " (arbitrary score: ops/ms)";
+        });
+      });
+    }
+
+    function reset() {
+      hidden.innerHTML = "";
+      log.textContent = "Reset complete.";
+    }
+
+    document.getElementById("run").addEventListener("click", runTest);
+    document.getElementById("reset").addEventListener("click", reset);
+  </script>
+
+</body>
+</html>
