@@ -59,18 +59,16 @@
 
       const start = performance.now();
 
-      // UI workload (DOM creation + style + layout cost)
       for (let i = 0; i < 5000; i++) {
         const div = document.createElement("div");
         div.className = "box";
 
-        // Forces style computation cost
+        // Kostnad for beregning av kraftstil
         div.style.background = `hsl(${Math.random() * 360}, 80%, 60%)`;
 
         hidden.appendChild(div);
       }
 
-      // Ensure browser actually paints/layouts
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           const end = performance.now();
