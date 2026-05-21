@@ -60,11 +60,10 @@
       const start = performance.now();
 
       for (let i = 0; i < 5000; i++) {
-        const div = document.createElement("div");
+        const div =  document.createElement("div");
         div.className = "box";
 
-        // Kostnad for beregning av kraftstil
-        div.style.background = `hsl(${Math.random() * 360}, 80%, 60%)`;
+        div.style.background = `hsl($(Math.random() * 360}, 80%, 60%);
 
         hidden.appendChild(div);
       }
