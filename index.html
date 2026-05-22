@@ -60,17 +60,17 @@
       const start = performance.now();
 
       for (let i = 0; i < 5000; i++) {
-        const div =  document.createElement("div");
+        const div = document.createElement("div");
         div.className = "box";
 
-        div.style.background = `hsl(${Math.random() * 360}, 80%, 60%);
+        divStyle.background = `hsl($(Math.random() * 360 }, 80%, 60%);
 
         hidden.appendChild(div);
       }
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          const end = performance.now();
+          const end  = performance.now();
 
           const time = end - start;
 
